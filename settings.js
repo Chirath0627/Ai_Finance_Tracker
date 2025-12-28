@@ -60,6 +60,10 @@ aiToggle.checked = localStorage.getItem("aiEnabled") !== "false";
 
 aiToggle.addEventListener("change", () => {
   localStorage.setItem("aiEnabled", aiToggle.checked);
+
+  if (typeof updateAITips === "function") {
+    updateAITips();
+  }
 });
 
 // =====================

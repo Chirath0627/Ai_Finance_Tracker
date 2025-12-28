@@ -465,20 +465,31 @@ function renderCharts() {
 
 // AI part
 function updateAITips() {
-  const transactions = getTransactions();
   const tipElement = document.getElementById("aiTip");
 
-  // Safety check
-  if (!tipElement) return;
+  // 🔒 AI disabled
+  const aiCard = document.querySelector(".ai-card");
 
-  // Loading state (AI thinking)
+  if (!isAIEnabled()) {
+    aiCard.classList.add("ai-disabled");
+  } else {
+    aiCard.classList.remove("ai-disabled");
+  }
+
+  const transactions = getTransactions();
+
+  // No data
+  if (transactions.length < 3) {
+    tipElement.textContent = "Add more transactions to get AI insights 📊";
+    return;
+  }
+
   tipElement.textContent = "Analyzing your finances 🤖...";
 
   setTimeout(() => {
     const insight = generateSmartInsights(transactions);
     const prediction = generateMonthlyPrediction(transactions);
 
-    // Combine output safely
     tipElement.innerHTML = prediction
       ? `${insight}<br><br>${prediction}`
       : insight;

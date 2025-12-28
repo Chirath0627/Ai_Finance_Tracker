@@ -1,3 +1,7 @@
+function isAIEnabled() {
+  return localStorage.getItem("aiEnabled") !== "false";
+} //Control toggle
+
 function generateSmartInsights(transactions) {
   if (transactions.length < 3) {
     return "Add more transactions to unlock AI insights 📊";
