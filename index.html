@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Assisted Personal Finance Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+    <h2>Finance Tracker</h2>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#analytics">Analytics</a>
+    <a href="#addTransaction">Add Transaction</a>
+    <a href="#transactions">Transactions</a>
+    <a href="#monthlySummary">Monthly Summary</a>
+    <a href="#settings">Settings</a>
+</aside>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+    <!-- TOP BAR -->
+    <header class="top-bar">
+        <h3>Welcome to Your Finance Tracker</h3>
+        <span class="date">Today’s Date</span>
+    </header>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard">
+
+        <!-- DASHBOARD CARDS -->
+        <section class="cards">
+            <div class="card income-card">Income</div>
+            <div class="card expense-card">Expenses</div>
+            <div class="card balance-card">Balance</div>
+        </section>
+
+        <!-- CHARTS SECTION -->
+        <section class="charts" id="analytics">
+            <canvas id="barChart" class="chart"></canvas>
+            <canvas id="pieChart" class="chart"></canvas>
+        </section>
+
+    </section>
+
+    <!-- ADD TRANSACTION + INSIGHTS ROW -->
+    <section class="transaction-row">
+
+        <!-- LEFT : Add Transaction -->
+        <form class="add-transaction" id="addTransaction">
+            <h2>Add Transaction</h2>
+
+            <label for="type">Type</label>
+            <select id="type">
+                <option value="">Select</option>
+                <option>Income</option>
+                <option>Expense</option>
+            </select>
+
+            <label for="category">Category</label>
+            <input id="category" placeholder="e.g. Food, Salary" />
+
+            <label for="amount">Amount</label>
+            <input id="amount" type="number" />
+
+            <label for="date">Date</label>
+            <input id="date" type="date" />
+
+            <button type="button" id="addBtn">Add Transaction</button>
+        </form>
+
+        <!-- RIGHT : Quick Overview + Smart Tip -->
+        <section class="insights-panel">
+
+            <div class="overview-card">
+                <h3>Quick Overview</h3>
+
+                <div class="stats">
+                    <div class="stat">
+                        <span class="label">Today Income</span>
+                        <span class="value income" id="todayIncome">LKR 0</span>
+                    </div>
+
+                    <div class="stat">
+                        <span class="label">Today Expense</span>
+                        <span class="value expense" id="todayExpense">LKR 0</span>
+                    </div>
+
+                    <div class="stat">
+                        <span class="label">Monthly Balance</span>
+                        <span class="value balance" id="monthlyBalance">LKR 0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ai-card">
+                <h3>Smart Tip</h3>
+                <p id="aiTip">Add more transactions to get insights 📊</p>
+            </div>
+
+        </section>
+    </section>
+
+    <!-- FILTER SECTION -->
+    <div class="filters">
+        <label for="filterType">Filter by Type</label>
+        <select id="filterType">
+            <option value="All">All</option>
+            <option value="Income">Income</option>
+            <option value="Expense">Expense</option>
+        </select>
+
+        <label for="searchCategory">Search Category</label>
+        <input type="text" id="searchCategory" placeholder="Search category">
+
+        <label for="filterDate">Filter Date</label>
+        <input type="date" id="filterDate">
+
+        <select id="sortBy">
+            <option value="">Sort By</option>
+            <option value="date-new">Date (Newest)</option>
+            <option value="date-old">Date (Oldest)</option>
+            <option value="amount-high">Amount (High → Low)</option>
+            <option value="amount-low">Amount (Low → High)</option>
+        </select>
+    </div>
+
+    <!-- TRANSACTIONS LIST -->
+    <div id="transactionList"></div>
+    <div id="transactions"></div>
+
+    <!-- MONTHLY SUMMARY -->
+    <section class="monthly-summary" id="monthlySummary">
+        <h3>Monthly Summary</h3>
+
+        <div class="summary-cards">
+            <div class="summary-card income-summary">Income: LKR 0.00</div>
+            <div class="summary-card expense-summary">Expenses: LKR 0.00</div>
+            <div class="summary-card balance-summary">Balance: LKR 0.00</div>
+        </div>
+
+        <label for="monthSelect">Select Month:</label>
+        <input type="month" id="monthSelect">
+    </section>
+
+    <!-- EXPORT -->
+    <button id="exportCSV" class="export-btn">
+        Export Transactions (CSV)
+    </button>
+
+    <!-- SETTINGS  -->
+     <div class="settings-modal" id="settingsModal">
+        <div class="settings-content">
+            
+            <div class="settings-header">
+                <h2>🔧 Settings</h2>
+                <button class="close-btn" id="closeSettings">×</button>
+            </div>
+
+    <!-- Currency -->
+    <div class="setting-item">
+      <label>💱 Currency</label>
+      <select id="currencySelect">
+        <option value="LKR">LKR</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+      </select>
+    </div>
+
+    <!-- Theme -->
+    <div class="setting-item">
+      <label>🌙 Dark Mode</label>
+      <input type="checkbox" id="themeToggle">
+    </div>
+
+    <!-- AI Tips -->
+    <div class="setting-item">
+      <label>🤖 AI Tips</label>
+      <input type="checkbox" id="aiToggle" checked>
+    </div>
+
+    <!-- Clear Data -->
+    <div class="setting-item danger">
+      <button id="clearTransactions">🧹 Clear All Transactions</button>
+    </div>
+
+  </div>
+</div>
+
+
+
+</div>
+
+<script src="aiEngine.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
