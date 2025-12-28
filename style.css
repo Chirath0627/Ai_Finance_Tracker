@@ -14,6 +14,20 @@ body {
     min-height: 100vh;
 }
 
+
+/* =====================
+   DARK MODE BASE
+===================== */
+body.dark {
+  background-color: #0f172a;
+  color: #e5e7eb;
+}
+
+* {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+
 /* ==========================
    SIDEBAR
 ========================== */
@@ -47,6 +61,18 @@ body {
     color: #fff;
 }
 
+body.dark .sidebar {
+  background: #020617;
+}
+
+body.dark .sidebar a {
+  color: #cbd5f5;
+}
+
+body.dark .sidebar a:hover {
+  background: #1e293b;
+}
+
 /* ==========================
    MAIN CONTENT
 ========================== */
@@ -55,6 +81,23 @@ body {
     padding: 20px 30px;
     width: 100%;
 }
+
+/*Dark Mode*/
+body.dark .main-content {
+  background: #0f172a;
+}
+
+body.dark .card,
+body.dark .overview-card,
+body.dark .ai-card,
+body.dark .summary-card,
+body.dark .add-transaction,
+body.dark .filters {
+  background: #020617;
+  color: #e5e7eb;
+  border-color: #1e293b;
+}
+
 
 /* ==========================
    TOP BAR
@@ -79,6 +122,20 @@ body {
 /* ==========================
    DASHBOARD CARDS
 ========================== */
+
+/*Dark mode for inputs, buttons and select*/
+body.dark input,
+body.dark select,
+body.dark button {
+  background: #020617;
+  color: #e5e7eb;
+  border: 1px solid #334155;
+}
+
+body.dark input::placeholder {
+  color: #94a3b8;
+}
+
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -742,4 +799,13 @@ body.dark h2 {
   color: #e5e7eb;
 }
 
+/*Dark mode for settings*/
+body.dark .settings-modal {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+body.dark .settings-content {
+  background: #020617;
+  color: #e5e7eb;
+}
 

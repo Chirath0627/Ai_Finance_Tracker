@@ -463,6 +463,23 @@ function renderCharts() {
   });
 }
 
+//Themes for chats
+function updateChartTheme() {
+  const isDark = document.body.classList.contains("dark");
+  const color = isDark ? "#e5e7eb" : "#111827";
+
+  if (window.barChartInstance) {
+    barChartInstance.options.scales.x.ticks.color = color;
+    barChartInstance.options.scales.y.ticks.color = color;
+    barChartInstance.update();
+  }
+
+  if (window.pieChartInstance) {
+    pieChartInstance.options.plugins.legend.labels.color = color;
+    pieChartInstance.update();
+  }
+}
+
 // AI part
 function updateAITips() {
   const tipElement = document.getElementById("aiTip");
