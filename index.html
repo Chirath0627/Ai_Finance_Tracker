@@ -16,7 +16,7 @@
     <a href="#addTransaction">Add Transaction</a>
     <a href="#transactions">Transactions</a>
     <a href="#monthlySummary">Monthly Summary</a>
-    <a href="#settings">Settings</a>
+    <a href="#settings" id="settingsBtn">Settings</a>
 </aside>
 
 <!-- MAIN CONTENT -->
@@ -151,18 +151,19 @@
         Export Transactions (CSV)
     </button>
 
-    <!-- SETTINGS  -->
-     <div class="settings-modal" id="settingsModal">
-        <div class="settings-content">
-            
-            <div class="settings-header">
-                <h2>🔧 Settings</h2>
-                <button class="close-btn" id="closeSettings">×</button>
-            </div>
+
+<!-- SETTINGS MODAL -->
+<div class="settings-modal" id="settingsModal">
+  <div class="settings-content" role="dialog" aria-modal="true">
+
+    <div class="settings-header">
+      <h2>🔧 Settings</h2>
+      <button type="button" class="close-btn" id="closeSettings">×</button>
+    </div>
 
     <!-- Currency -->
     <div class="setting-item">
-      <label>💱 Currency</label>
+      <label for="currencySelect">💱 Currency</label>
       <select id="currencySelect">
         <option value="LKR">LKR</option>
         <option value="USD">USD</option>
@@ -172,19 +173,21 @@
 
     <!-- Theme -->
     <div class="setting-item">
-      <label>🌙 Dark Mode</label>
+      <label for="themeToggle">🌙 Dark Mode</label>
       <input type="checkbox" id="themeToggle">
     </div>
 
     <!-- AI Tips -->
     <div class="setting-item">
-      <label>🤖 AI Tips</label>
+      <label for="aiToggle">🤖 AI Tips</label>
       <input type="checkbox" id="aiToggle" checked>
     </div>
 
-    <!-- Clear Data -->
+    <!-- Clear Transactions -->
     <div class="setting-item danger">
-      <button id="clearTransactions">🧹 Clear All Transactions</button>
+      <button type="button" id="clearTransactions">
+        🧹 Clear All Transactions
+      </button>
     </div>
 
   </div>
@@ -192,11 +195,15 @@
 
 
 
+
+
 </div>
 
 <script src="aiEngine.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="settings.js"></script>
 <script src="script.js"></script>
+
 <!--Check git push-->
 </body>
 </html>

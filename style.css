@@ -630,13 +630,14 @@ body {
 }
 
 
-/* =========================
-   SETTINGS PANEL
-========================= */
+/* ======================
+   SETTINGS MODAL
+   ====================== */
+
 .settings-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   display: none;
   align-items: center;
   justify-content: center;
@@ -645,68 +646,96 @@ body {
 
 .settings-content {
   background: #ffffff;
-  width: 500px;
-  padding: 20px;
-  border-radius: 12px;
+  width: 360px;
+  border-radius: 14px;
+  padding: 20px 22px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-  animation: pop 0.3s ease;
+  animation: scaleIn 0.25s ease;
 }
 
-@keyframes pop {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
+/* Header */
 .settings-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 .settings-header h2 {
-  font-size: 18px;
+  font-size: 1.2rem;
+  color: #1f2937;
 }
 
 .close-btn {
-  background: none;
+  font-size: 1.4rem;
   border: none;
-  font-size: 22px;
+  background: none;
   cursor: pointer;
+  color: #555;
 }
 
+/* Setting Items */
 .setting-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 14px;
+  font-size: 0.95rem;
+}
+
+.setting-item label {
+  color: #374151;
 }
 
 .setting-item select,
-.setting-item button {
-  padding: 6px 10px;
-  border-radius: 6px;
+.setting-item input[type="checkbox"] {
+  cursor: pointer;
+}
+
+/* Danger */
+.setting-item.danger {
+  margin-top: 20px;
 }
 
 .setting-item.danger button {
-  background: #ff4d4d;
-  color: white;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
   border: none;
+  background: #dc2626;
+  color: #ffffff;
+  font-weight: 600;
   cursor: pointer;
 }
 
 .setting-item.danger button:hover {
-  background: #e60000;
+  background: #b91c1c;
 }
 
 /* DARK MODE */
 body.dark {
-  background: #121212;
-  color: #eee;
+  background: #111827;
+  color: #e5e7eb;
 }
 
 body.dark .settings-content {
-  background: #1e1e1e;
+  background: #1f2937;
+}
+
+body.dark label,
+body.dark h2 {
+  color: #e5e7eb;
 }
 
 
