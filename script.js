@@ -1,3 +1,20 @@
+//For change currency
+function getCurrency() {
+  return localStorage.getItem("currency") || "LKR";
+}
+
+function formatAmount(amount) {
+  const currency = getCurrency();
+
+  const symbols = {
+    LKR: "LKR",
+    USD: "$",
+    EUR: "€",
+  };
+
+  return `${symbols[currency]} ${amount.toFixed(2)}`;
+}
+
 function getTransactions() {
   let transactions = localStorage.getItem("transactions");
   if (transactions) {
@@ -69,7 +86,7 @@ function renderTransactions(transactions = getTransactions()) {
     // Add + or - based on type
     const sign = transaction.type === "Income" ? "+" : "-";
     // Format amount
-    amountDiv.textContent = `${sign} LKR${transaction.amount.toFixed(2)}`;
+    amountDiv.textContent = `${sign} ${formatAmount(transaction.amount)}`; //For update currecny
     amountDiv.classList.add("amount"); // <-- Add class here
 
     amountDiv.classList.add(
@@ -259,14 +276,14 @@ function updateDashboard() {
   const expenseCard = document.querySelector(".card.expense-card");
   const balanceCard = document.querySelector(".card.balance-card");
 
-  incomeCard.innerHTML = `Income: <span class="amount-value">LKR ${totals.income.toFixed(
-    2
+  incomeCard.innerHTML = `Income: <span class="amount-value">${formatAmount(
+    totals.income
   )}</span>`;
-  expenseCard.innerHTML = `Expenses: <span class="amount-value">LKR ${totals.expense.toFixed(
-    2
+  expenseCard.innerHTML = `Expenses: <span class="amount-value">${formatAmount(
+    totals.expense
   )}</span>`;
-  balanceCard.innerHTML = `Balance: <span class="amount-value">LKR ${totals.balance.toFixed(
-    2
+  balanceCard.innerHTML = `Balance: <span class="amount-value">${formatAmount(
+    totals.balance
   )}</span>`;
 }
 
@@ -293,9 +310,9 @@ function updateQuickOverview() {
     }
   });
 
-  todayIncomeEl.textContent = `LKR ${todayIncome.toFixed(2)}`;
-  todayExpenseEl.textContent = `LKR ${todayExpense.toFixed(2)}`;
-  monthlyBalanceEl.textContent = `LKR ${monthlyBalance.toFixed(2)}`;
+  todayIncomeEl.textContent = formatAmount(todayIncome);
+  todayExpenseEl.textContent = formatAmount(todayExpense);
+  monthlyBalanceEl.textContent = formatAmount(monthlyBalance);
 }
 
 //Smart AI Tip logic
@@ -355,9 +372,9 @@ function calculateMonthlySummary(monthYear) {
   });
 
   const balance = totalIncome - totalExpense;
-  incomeSummary.textContent = `Income: LKR ${totalIncome.toFixed(2)}`;
-  expenseSummary.textContent = `Expenses: LKR ${totalExpense.toFixed(2)}`;
-  balanceSummary.textContent = `Balance: LKR ${balance.toFixed(2)}`;
+  incomeSummary.textContent = `Income: ${formatAmount(totalIncome)}`;
+  expenseSummary.textContent = `Expenses: ${formatAmount(totalExpense)}`;
+  balanceSummary.textContent = `Balance: ${formatAmount(balance)}`;
 }
 
 monthSelect.addEventListener("change", () => {
@@ -500,7 +517,8 @@ function exportToCSV() {
   }
 
   // CSV Header
-  let csv = "Type,Category,Amount (LKR),Date\n";
+  const currency = getCurrency();
+  let csv = `Type,Category,Amount (${currency}),Date\n`;
 
   //CSV Rows
   transactions.forEach((t) => {

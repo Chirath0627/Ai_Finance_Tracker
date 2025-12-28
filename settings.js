@@ -71,3 +71,17 @@ document.getElementById("clearTransactions").addEventListener("click", () => {
     location.reload();
   }
 });
+
+//Update Currency
+currencySelect.addEventListener("change", () => {
+  localStorage.setItem("currency", currencySelect.value);
+
+  // Refresh UI instantly
+  if (typeof updateDashboard === "function") updateDashboard();
+  if (typeof renderTransactions === "function") renderTransactions();
+  if (typeof updateQuickOverview === "function") updateQuickOverview();
+  if (typeof calculateMonthlySummary === "function") {
+    const month = document.getElementById("monthSelect")?.value;
+    if (month) calculateMonthlySummary(month);
+  }
+});
