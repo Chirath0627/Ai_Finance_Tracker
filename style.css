@@ -168,6 +168,59 @@ body.dark .sidebar a:hover {
 }
 
 
+/* =========================
+   MOBILE SIDEBAR SLIDE-IN
+========================= */
+
+.sidebar {
+  transition: transform 0.3s ease, width 0.3s ease;
+}
+
+/* Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 998;
+  display: none;
+}
+
+/* Sidebar default desktop */
+.sidebar {
+  z-index: 999;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    height: 100vh;
+    transform: translateX(-100%);
+    width: 240px;
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay.active {
+    display: block;
+  }
+
+  /* Disable desktop collapse behavior on mobile */
+  .sidebar.collapsed {
+    width: 240px;
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+  }
+}
+
+
 /* ==========================
    MAIN CONTENT
 ========================== */
