@@ -568,39 +568,40 @@ function exportToCSV() {
 
 //Toggle SideBar
 const sidebar = document.getElementById("sidebar");
-const toggleBtn = document.getElementById("toggleSidebar");
+const desktopToggle = document.getElementById("toggleSidebar");
+const mobileToggle = document.getElementById("mobileToggle");
 const overlay = document.getElementById("sidebarOverlay");
 
-/* Restore desktop sidebar state */
+/* Desktop toggle */
+desktopToggle.addEventListener("click", () => {
+  sidebar.classList.toggle("collapsed");
+
+  localStorage.setItem(
+    "sidebar",
+    sidebar.classList.contains("collapsed") ? "collapsed" : "expanded"
+  );
+});
+
+/* Mobile toggle */
+mobileToggle.addEventListener("click", () => {
+  sidebar.classList.add("mobile-open");
+  overlay.classList.add("active");
+});
+
+/* Close on overlay click */
+overlay.addEventListener("click", () => {
+  sidebar.classList.remove("mobile-open");
+  overlay.classList.remove("active");
+});
+
+/* Restore desktop state */
 if (window.innerWidth > 768) {
   if (localStorage.getItem("sidebar") === "collapsed") {
     sidebar.classList.add("collapsed");
   }
 }
 
-toggleBtn.addEventListener("click", () => {
-  if (window.innerWidth <= 768) {
-    // MOBILE
-    sidebar.classList.add("mobile-open");
-    overlay.classList.add("active");
-  } else {
-    // DESKTOP
-    sidebar.classList.toggle("collapsed");
-
-    localStorage.setItem(
-      "sidebar",
-      sidebar.classList.contains("collapsed") ? "collapsed" : "expanded"
-    );
-  }
-});
-
-/* Close sidebar when clicking overlay */
-overlay.addEventListener("click", () => {
-  sidebar.classList.remove("mobile-open");
-  overlay.classList.remove("active");
-});
-
-/* Handle resize */
+/* Cleanup on resize */
 window.addEventListener("resize", () => {
   if (window.innerWidth > 768) {
     sidebar.classList.remove("mobile-open");

@@ -220,6 +220,34 @@ body.dark .sidebar a:hover {
   }
 }
 
+/* MOBILE TOGGLE BUTTON */
+.mobile-toggle {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 22px;
+  padding: 8px 12px;
+  border: none;
+  background: #222;
+  color: #fff;
+  border-radius: 6px;
+  z-index: 1001;
+  display: none;
+  cursor: pointer;
+}
+
+/* Show mobile toggle ONLY on mobile */
+@media (max-width: 768px) {
+  .mobile-toggle {
+    display: block;
+  }
+
+  /* Hide desktop toggle inside sidebar */
+  .toggle-btn {
+    display: none;
+  }
+}
+
 
 /* ==========================
    MAIN CONTENT
