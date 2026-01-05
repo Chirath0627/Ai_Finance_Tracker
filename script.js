@@ -565,3 +565,20 @@ function exportToCSV() {
   a.click();
   document.body.removeChild(a);
 }
+
+const sidebar = document.getElementById("sidebar");
+const toggleBtn = document.getElementById("toggleSidebar");
+
+// Load saved state
+if (localStorage.getItem("sidebar") === "collapsed") {
+  sidebar.classList.add("collapsed");
+}
+
+toggleBtn.addEventListener("click", () => {
+  sidebar.classList.toggle("collapsed");
+
+  localStorage.setItem(
+    "sidebar",
+    sidebar.classList.contains("collapsed") ? "collapsed" : "expanded"
+  );
+});

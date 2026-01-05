@@ -73,6 +73,101 @@ body.dark .sidebar a:hover {
   background: #1e293b;
 }
 
+/* =========================
+   SIDEBAR COLLAPSE
+========================= */
+
+.sidebar {
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 70px;
+}
+
+/* Hide text when collapsed */
+.sidebar.collapsed .link-text,
+.sidebar.collapsed .logo-text {
+  display: none;
+}
+
+/* Center icons / links */
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Toggle button */
+.toggle-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Main content shift */
+.main-content {
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 70px;
+}
+
+/* =========================
+   SIDEBAR ICON SUPPORT
+========================= */
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+}
+
+.sidebar .icon {
+  font-size: 20px;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* COLLAPSED STATE */
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar.collapsed .link-text,
+.sidebar.collapsed .logo-text {
+  display: none;
+}
+
+.sidebar.collapsed a {
+  justify-content: center;
+}
+
+/* Toggle button */
+.toggle-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Main content animation */
+.main-content {
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 70px;
+}
+
+
 /* ==========================
    MAIN CONTENT
 ========================== */
@@ -870,3 +965,4 @@ body.dark .settings-content {
     padding: 18px;
   }
 }
+
